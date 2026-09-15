@@ -9,14 +9,14 @@ package br.com.ifba.usuario.entity;
  * @author ariia
  */
 public class Usuario {
-    String nome;
-    String cpf;
-    String genero;
-    String dataNascimento;
-    String telefone;
-    String email;
-    String login;
-    String senha;
+    public String nome;
+    public String cpf;
+    public String genero;
+    public String dataNascimento;
+    public String telefone;
+    public String email;
+    public String login;
+    public String senha;
 
     
 }
