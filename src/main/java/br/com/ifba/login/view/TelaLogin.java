@@ -4,6 +4,8 @@
  */
 package br.com.ifba.login.view;
 
+import br.com.ifba.usuario.entity.Usuario;
+
 /**
  *
  * @author ariia
@@ -113,7 +115,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addComponent(lblResultado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -125,14 +127,20 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // 1. captura o que foi digitado nos campos
-String loginDigitado = txtLogin.getText();
-String senhaDigitada = new String(txtSenha.getPassword());
+        String loginDigitado = txtLogin.getText();
+        String senhaDigitada = new String(txtSenha.getPassword());
+        
+         // 2. instancia o objeto de dominio e preenche login e senha
+        Usuario usuario = new Usuario();
+        usuario.login = loginDigitado;
+        usuario.senha = senhaDigitada;
 
-// 2. usa as variáveis para preencher o label
-lblResultado.setText(
-    "Login digitado: " + loginDigitado + "\n" +
-    "Senha digitada: " + senhaDigitada
-);
+
+        /// 3. usa os dados vindos do objeto para preencher o label
+            lblResultado.setText(
+              "Login digitado: " + usuario.login + "\n" +
+                "Senha digitada: " + usuario.senha
+    );
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**

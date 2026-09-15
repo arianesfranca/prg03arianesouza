@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package br.com.ifba.usuario.view;
+import br.com.ifba.usuario.entity.Usuario;
 import javax.swing.JOptionPane;
 import br.com.ifba.usuario.validar.ValidadorUsuario;
 /**
@@ -196,7 +197,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // captura o que foi digitado em cada campo
+        // 1. captura o que foi digitado em cada campo
+        
 String nome = txtNomeCompleto.getText();
 String cpf = txtCpf.getText();
 String genero = (String) cbxGenero.getSelectedItem();
@@ -223,6 +225,18 @@ if (nome.isEmpty() || cpf.isEmpty() || dataNascimento.isEmpty() ||
     JOptionPane.showMessageDialog(this, "Login contém palavra não permitida.");
 
 } else {
+    // 4. tudo certo, cadastro realizado
+    Usuario usuario = new Usuario();
+    usuario.nome = nome;
+    usuario.cpf = cpf;
+    usuario.genero = genero;
+    usuario.dataNascimento = dataNascimento;
+    usuario.telefone = telefone;
+    usuario.email = email;
+    usuario.login = login;
+    usuario.senha = senha;
+    
+    
     JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
 }
     }//GEN-LAST:event_btnCadastrarActionPerformed
