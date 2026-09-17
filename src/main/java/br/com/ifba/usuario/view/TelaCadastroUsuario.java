@@ -226,18 +226,15 @@ if (nome.isEmpty() || cpf.isEmpty() || dataNascimento.isEmpty() ||
 
 } else {
     // 4. tudo certo, cadastro realizado
-    Usuario usuario = new Usuario();
-    usuario.nome = nome;
-    usuario.cpf = cpf;
-    usuario.genero = genero;
-    usuario.dataNascimento = dataNascimento;
-    usuario.telefone = telefone;
-    usuario.email = email;
-    usuario.login = login;
-    usuario.senha = senha;
+    // instancia o objeto usando o construtor com parametros
+        Usuario usuario = new Usuario(nome, cpf, login, senha);
+        usuario.setGenero(genero);
+        usuario.setDataNascimento(dataNascimento);
+        usuario.setTelefone(telefone);
+        usuario.setEmail(email);
     
     
-    JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
+    JOptionPane.showMessageDialog(this, "Usuário " + usuario.getNome() + " cadastrado com sucesso!");
 }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
