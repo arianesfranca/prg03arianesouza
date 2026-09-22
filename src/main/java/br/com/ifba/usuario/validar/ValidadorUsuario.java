@@ -25,4 +25,40 @@ public static boolean contemPalavraProibida(String texto) {
 
         return false;
     }
+ // verifica se todos os campos obrigatorios foram preenchidos
+    public static boolean camposPreenchidos(String nome, String cpf, String dataNascimento,
+            String telefone, String email, String login, String senha, String confirmarSenha) {
+        return nome != null && !nome.isEmpty()
+                && cpf != null && !cpf.isEmpty()
+                && dataNascimento != null && !dataNascimento.isEmpty()
+                && telefone != null && !telefone.isEmpty()
+                && email != null && !email.isEmpty()
+                && login != null && !login.isEmpty()
+                && senha != null && !senha.isEmpty()
+                && confirmarSenha != null && !confirmarSenha.isEmpty();
+    }
+
+    // verifica se o cpf tem 11 digitos numericos
+    public static boolean cpfValido(String cpf) {
+        if (cpf == null) {
+            return false;
+        }
+        return cpf.matches("\\d{11}");
+    }
+
+    // verifica se a senha atende ao tamanho minimo
+    public static boolean senhaForte(String senha) {
+        if (senha == null) {
+            return false;
+        }
+        return senha.length() >= 6;
+    }
+
+    // verifica se a senha e a confirmacao sao iguais
+    public static boolean senhasConferem(String senha, String confirmarSenha) {
+        if (senha == null || confirmarSenha == null) {
+            return false;
+        }
+        return senha.equals(confirmarSenha);
+    }
 }
