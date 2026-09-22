@@ -209,22 +209,25 @@ String login = txtLoginCadastro.getText();
 String senha = new String(txtSenhaCadastro.getPassword());
 String confirmarSenha = new String(txtConfirmarSenha.getPassword());
 
-// valida se algum campo obrigatório está vazio
-if (nome.isEmpty() || cpf.isEmpty() || dataNascimento.isEmpty() ||
-    telefone.isEmpty() || email.isEmpty() || login.isEmpty() ||
-    senha.isEmpty() || confirmarSenha.isEmpty()) {
+        // valida se algum campo obrigatório está vazio
+        if (!ValidadorUsuario.camposPreenchidos(nome, cpf, dataNascimento, telefone, email, login, senha, confirmarSenha)) {
 
-    JOptionPane.showMessageDialog(this, "Preencha todos os campos.");
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos.");
 
-} else if (!senha.equals(confirmarSenha)) {
-    // valida se a senha e a confirmação são iguais
-    JOptionPane.showMessageDialog(this, "As senhas não coincidem.");
+        } else if (!ValidadorUsuario.senhasConferem (senha, confirmarSenha)) {
+         // valida se a senha e a confirmação são iguais
+        JOptionPane.showMessageDialog(this, "As senhas não coincidem.");
 
-} else if (ValidadorUsuario.contemPalavraProibida(login)) {
-    //  valida se o login contém alguma palavra não permitida
-    JOptionPane.showMessageDialog(this, "Login contém palavra não permitida.");
+        } else if (!ValidadorUsuario.cpfValido(cpf)) {
+        //  valida se o login contém alguma palavra não permitida
+            JOptionPane.showMessageDialog(this, "CPF invalido. DIgite 11 numeros.");
 
-} else {
+        }else if (!ValidadorUsuario.senhaForte(senha)) {
+                JOptionPane.showMessageDialog(this, "Senha muito curta. Mínimo de 6 caracteres.");
+        } else if (ValidadorUsuario.contemPalavraProibida(login)) 
+        {
+                JOptionPane.showMessageDialog(this, "Login contém palavra não permitida."); 
+        }else {
     // 4. tudo certo, cadastro realizado
     // instancia o objeto usando o construtor com parametros
         Usuario usuario = new Usuario(nome, cpf, login, senha);
@@ -232,7 +235,7 @@ if (nome.isEmpty() || cpf.isEmpty() || dataNascimento.isEmpty() ||
         usuario.setDataNascimento(dataNascimento);
         usuario.setTelefone(telefone);
         usuario.setEmail(email);
-    
+                
     
     JOptionPane.showMessageDialog(this, "Usuário " + usuario.getNome() + " cadastrado com sucesso!");
 }
