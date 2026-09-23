@@ -4,79 +4,47 @@
  */
 package br.com.ifba.usuario.entity;
 
-// Classe de dominio Solicitacao - solicitacao de segunda via de certidao
-public class Solicitacao {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-    private String numero;
-    private String dataSolicitacao;
-    private String tipoCertidao;
-    private StatusSolicitacao status;
-    private PessoaRegistrada pessoaRegistrada;
-    private String dataImpressao;
+// Classe de dominio Solicitante - pessoa que solicita a segunda via
+public class Solicitante {
 
-    public Solicitacao() {
-        this.status = StatusSolicitacao.AGUARDANDO_IMPRESSAO;
+    private String nome;
+    private String telefone;
+    private List<Solicitacao> solicitacoes = new ArrayList<>();
+
+    public Solicitante() {
     }
 
-    public Solicitacao(String numero, String dataSolicitacao, String tipoCertidao, PessoaRegistrada pessoaRegistrada) {
-        this.numero = numero;
-        this.dataSolicitacao = dataSolicitacao;
-        this.tipoCertidao = tipoCertidao;
-        this.pessoaRegistrada = pessoaRegistrada;
-        this.status = StatusSolicitacao.AGUARDANDO_IMPRESSAO;
+    public Solicitante(String nome, String telefone) {
+        this.nome = nome;
+        this.telefone = telefone;
     }
 
-    // registra a impressao da certidao, atualizando o status
-    public void registrarImpressao(String dataImpressao) {
-        this.dataImpressao = dataImpressao;
-        this.status = StatusSolicitacao.IMPRESSA_AGUARDANDO_RETIRADA;
+    // adiciona uma solicitacao sem expor a lista para fora da classe
+    public void addSolicitacao(Solicitacao solicitacao) {
+        solicitacoes.add(solicitacao);
     }
 
-    public String getNumero() {
-        return numero;
+    public List<Solicitacao> getSolicitacoes() {
+        return Collections.unmodifiableList(solicitacoes);
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public String getNome() {
+        return nome;
     }
 
-    public String getDataSolicitacao() {
-        return dataSolicitacao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setDataSolicitacao(String dataSolicitacao) {
-        this.dataSolicitacao = dataSolicitacao;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public String getTipoCertidao() {
-        return tipoCertidao;
-    }
-
-    public void setTipoCertidao(String tipoCertidao) {
-        this.tipoCertidao = tipoCertidao;
-    }
-
-    public StatusSolicitacao getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusSolicitacao status) {
-        this.status = status;
-    }
-
-    public PessoaRegistrada getPessoaRegistrada() {
-        return pessoaRegistrada;
-    }
-
-    public void setPessoaRegistrada(PessoaRegistrada pessoaRegistrada) {
-        this.pessoaRegistrada = pessoaRegistrada;
-    }
-
-    public String getDataImpressao() {
-        return dataImpressao;
-    }
-
-    public void setDataImpressao(String dataImpressao) {
-        this.dataImpressao = dataImpressao;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 }
