@@ -11,14 +11,14 @@ import br.com.ifba.usuario.interfaces.Autenticavel;
  * @author ariia
  */
 public class Usuario implements Autenticavel {
-    public String nome;
-    public String cpf;
-    public String genero;
-    public String dataNascimento;
-    public String telefone;
-    public String email;
-    public String login;
-    public String senha;
+    private String nome;
+    private String cpf;
+    private String genero;
+    private String dataNascimento;
+    private String telefone;
+    private String email;
+    private String login;
+    private String senha;
 
     public Usuario() {
     }
@@ -94,10 +94,13 @@ public class Usuario implements Autenticavel {
         this.senha = senha;
     }
 
+    // metodo que cada subclasse pode sobrescrever com sua propria descricao
+    public String getDescricao() {
+        return "Usuario: " + nome;
+    }
+
     @Override
     public boolean autenticar(String login, String senha) {
         return this.login.equals(login) && this.senha.equals(senha);
     }
-
-    
 }

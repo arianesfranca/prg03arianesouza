@@ -31,10 +31,12 @@ public class Solicitante extends Usuario {
         return Collections.unmodifiableList(solicitacoes);
     }
 
+    @Override
     public String getTelefone() {
         return telefone;
     }
 
+    @Override
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
