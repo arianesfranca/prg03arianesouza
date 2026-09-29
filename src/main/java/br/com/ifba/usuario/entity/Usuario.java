@@ -29,6 +29,18 @@ public class Usuario implements Autenticavel {
         this.login = login;
         this.senha = senha;
     }
+    
+    public Usuario(String nome, String cpf, String genero, String dataNascimento,
+            String telefone, String email, String login, String senha) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.genero = genero;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.email = email;
+        this.login = login;
+        this.senha = senha;
+    }
 
     public String getNome() {
         return nome;
