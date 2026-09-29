@@ -22,4 +22,14 @@ public class UsuarioTest {
 
         assertFalse(usuario.autenticar("ariane", "senhaErrada"));
     }
+    
+    @Test
+    public void construtorComTodosOsCamposDevePreencherTudo() {
+        Usuario usuario = new Usuario("Carlos", "33333333333", "Masculino", "10/05/1990",
+                "71988888888", "carlos@email.com", "carlos", "senha123");
+
+        assertEquals("Carlos", usuario.getNome());
+        assertEquals("Masculino", usuario.getGenero());
+        assertEquals("carlos@email.com", usuario.getEmail());
+}
 }
