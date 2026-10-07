@@ -6,13 +6,17 @@ package br.com.ifba.usuario.view;
 import br.com.ifba.usuario.entity.Usuario;
 import javax.swing.JOptionPane;
 import br.com.ifba.usuario.validar.ValidadorUsuario;
+import br.com.ifba.usuario.repositorio.RepositorioUsuarioEmMemoria;
 /**
  *
  * @author ariia
  */
 public class TelaCadastroUsuario extends javax.swing.JFrame {
     
+    
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCadastroUsuario.class.getName());
+    private final RepositorioUsuarioEmMemoria repositorio = new RepositorioUsuarioEmMemoria();
 
     /**
      * Creates new form TelaCadastroUsuario
@@ -199,6 +203,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // 1. captura o que foi digitado em cada campo
         
+        
 String nome = txtNomeCompleto.getText();
 String cpf = txtCpf.getText();
 String genero = (String) cbxGenero.getSelectedItem();
@@ -235,9 +240,14 @@ String confirmarSenha = new String(txtConfirmarSenha.getPassword());
         usuario.setDataNascimento(dataNascimento);
         usuario.setTelefone(telefone);
         usuario.setEmail(email);
-                
+        try {
+        repositorio.cadastrar(usuario);
+        JOptionPane.showMessageDialog(this, "Usuário " + usuario.getNome() + " cadastrado com sucesso!");
+    } catch (IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(this, e.getMessage());
+    }
     
-    JOptionPane.showMessageDialog(this, "Usuário " + usuario.getNome() + " cadastrado com sucesso!");
+    
 }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -266,6 +276,7 @@ String confirmarSenha = new String(txtConfirmarSenha.getPassword());
         }
         //</editor-fold>
 
+        /* Create and display the form */
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new TelaCadastroUsuario().setVisible(true));
     }
