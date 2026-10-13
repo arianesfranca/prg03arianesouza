@@ -21,9 +21,7 @@ public class RepositorioUsuarioEmMemoria {
     private final Map<String, Usuario> porLogin = new HashMap<>();
 
     public void cadastrar(Usuario usuario) {
-    if (porLogin.containsKey(usuario.getLogin())) {
-        throw new IllegalArgumentException("Já existe um usuário com o login: " + usuario.getLogin());
-    }
+    
     usuarios.add(usuario);
     porLogin.put(usuario.getLogin(), usuario);
 }
