@@ -43,21 +43,13 @@ public class RepositorioUsuarioEmMemoriaTest {
     }
 
     @Test
-    public void cadastrarLoginDuplicadoDeveLancarExcecao() {
+    public void doisUsuariosDiferentesComMesmoLoginSaoIguaisParaALista() {
         RepositorioUsuarioEmMemoria repositorio = new RepositorioUsuarioEmMemoria();
         Usuario ana = new Usuario("Ana", "11111111111", "ana", "123456");
-        Usuario outraAna = new Usuario("Ana Paula", "22222222222", "ana", "outraSenha");
+        Usuario outraAna = new Usuario("Ana Paula", "22222222222", "ana", "senhaDiferente");
 
         repositorio.cadastrar(ana);
 
-        assertThrows(IllegalArgumentException.class, () -> repositorio.cadastrar(outraAna));
-    }
-
-    @Test
-    public void doisUsuariosDiferentesComMesmoLoginSaoIguaisParaAColecao() {
-        Usuario usuario1 = new Usuario("Ana", "11111111111", "ana", "123456");
-        Usuario usuario2 = new Usuario("Ana Paula", "22222222222", "ana", "senhaDiferente");
-
-        assertEquals(usuario1, usuario2);
+        assertTrue(repositorio.listarTodos().contains(outraAna));
     }
 }

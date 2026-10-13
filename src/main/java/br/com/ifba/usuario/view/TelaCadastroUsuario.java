@@ -240,12 +240,8 @@ String confirmarSenha = new String(txtConfirmarSenha.getPassword());
         usuario.setDataNascimento(dataNascimento);
         usuario.setTelefone(telefone);
         usuario.setEmail(email);
-        try {
         repositorio.cadastrar(usuario);
         JOptionPane.showMessageDialog(this, "Usuário " + usuario.getNome() + " cadastrado com sucesso!");
-    } catch (IllegalArgumentException e) {
-        JOptionPane.showMessageDialog(this, e.getMessage());
-    }
     
     
 }
